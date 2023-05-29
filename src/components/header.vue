@@ -1,0 +1,40 @@
+<template>
+	<header>
+		<h1>{{title}}</h1>
+		<Button text="Add task" color="green" />
+		<!--<Button text="Update task" color="blue" />-->
+		<!--<Button text="Delete task" color="red" />-->
+	</header>
+</template>
+
+<script>
+	import Button from '../components/button.vue'
+
+	export default {
+		name: 'Header',
+		//props: ['title'],
+		components: {
+			Button
+		},
+		props: {
+			title: String,
+		}
+		/*props: {
+			title: {
+				type: String,
+				default: 'Hello World'
+			}
+		}*/
+	}
+</script>
+
+<style scoped>
+	header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;	
+	}
+	
+
+</style>
