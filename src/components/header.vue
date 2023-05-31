@@ -1,7 +1,10 @@
 <template>
 	<header>
 		<h1>{{title}}</h1>
-		<Button text="Add task" color="green" />
+		<Button 
+		@btn-click="$emit('toggle-add-task')" 
+		:text="showAddTask ? 'Close' : 'Add task'" 
+		:color="showAddTask ? 'red' : 'green'" />
 		<!--<Button text="Update task" color="blue" />-->
 		<!--<Button text="Delete task" color="red" />-->
 	</header>
@@ -18,7 +21,9 @@
 		},
 		props: {
 			title: String,
-		}
+			showAddTask: Boolean
+		},
+		emits: ['toggle-add-task']
 		/*props: {
 			title: {
 				type: String,
