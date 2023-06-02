@@ -4,77 +4,32 @@
     @toggle-add-task="toggleAddTask()"
     title="Task Tracker" 
     :showAddTask="showAddTask" />
-    <div v-show="showAddTask">
-      <addTask @add-task="addTask" />
-    </div>
-    <Tasks 
-    @toggle-reminder="toggleReminder" 
-    @delete-task="deleteTask" 
-    :tasks="tasks" />
+    
+    <router-view :showAddTask="showAddTask"></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/header.vue'
-import Tasks from './components/tasks.vue'
-import addTask from './components/addTask.vue'
+import Footer from './components/footer.vue'
 export default {
   name: 'App',
   components: {
     Header,
-    Tasks,
-    addTask
+    Footer
   },
   data() {
     return {
-      tasks: [],
       showAddTask: false
     }
   },
   methods: {
-    deleteTask(id) {
-      if(confirm('Are you sure?')) {
-        this.tasks = this.tasks.filter(function deletetask(task) {
-        return task.id !== id
-        })
-      }
-    },
-
-    toggleReminder(id) {
-      this.tasks = this.tasks.map((task) => task.id === id
-        ? {...task, reminder: !task.reminder} : task // Ternary else if.
-        )
-    },
-
-    addTask(task) {
-      this.tasks = [...this.tasks, task]
-    },
     toggleAddTask() {
       this.showAddTask = !this.showAddTask
       console.log(this.showAddTask)
-    }
-  },
-  created() {
-    this.tasks = [
-    {
-      id: 1,
-      text: 'Doctor appointment',
-      day: 'March 1st',
-      reminder: true,
     },
-    {
-      id: 2,
-      text: 'Meeting at School',
-      day: 'March 3rd',
-      reminder: false
-    },
-    {
-      id: 3,
-      text: 'Destroy capitalism',
-      day: 'Everyday',
-      reminder: true
-    }]
   }
 }
 </script>
